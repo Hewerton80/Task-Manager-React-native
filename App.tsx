@@ -1,21 +1,21 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { View, Text} from 'react-native';
+import Routes from './src/routes';
+import { useFonts } from 'expo-font';
+import { Roboto_300Light, Roboto_500Medium} from '@expo-google-fonts/roboto';
 
 export default function App() {
+  const [fontsLoaded] = useFonts({
+    roboto_300: Roboto_300Light,
+    roboto_500: Roboto_500Medium
+  })
+  
+  if(!fontsLoaded){
+    return <View><Text>Carregando fontes</Text></View>
+  }
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <Routes />
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
