@@ -17,7 +17,7 @@ const HeaderIConButtonWidth = 52;
 // console.log('heightWindow - HeaderHeight: ', heightWindow - HeaderHeight);
 
 export const Header = styled.View`
-    /* margin-top: ${statusBarHeigth}px; */
+/* margin-top: ${statusBarHeigth}px; */
     flex-direction: row;
     background: ${colors.lightBlue};
     height: 55.5px;

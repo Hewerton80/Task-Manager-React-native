@@ -17,14 +17,16 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.hewerton80.frontmobile"
     },
     "android": {
       "useNextNotificationsApi": true,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.hewerton80.frontmobile"
     },
     "web": {
       "favicon": "./assets/favicon.png"
