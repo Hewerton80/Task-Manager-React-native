@@ -8,9 +8,8 @@ Agendador/Gerenciador de tarefas.
 
 ## Technologies 💻
 
-![React](https://img.shields.io/badge/-React_Native-61dafb?style=plastic&logoColor=black&logo=react)
-![CSS](https://img.shields.io/badge/-CSS-1572b6?style=plastic&logoColor=white&logo=css3)
-![HTML](https://img.shields.io/badge/-HTML-E34F26?style=plastic&logoColor=white&logo=html5) 
+![React Native](https://img.shields.io/badge/-React_Native-61dafb?style=plastic&logoColor=black&logo=react)
+![Styled components](https://img.shields.io/badge/styled--components-1572b6?style=plastic&logoColor=white&logo=styled-components)
 ![TypeScript](https://img.shields.io/badge/-TypeScript-007ACC?style=plastic&logoColor=white&logo=typescript)
 
 ## installation and execution ⚙️
@@ -26,7 +25,7 @@ $ yarn install
 $ yarn start
 ```
 
-## Colaboradores
+## Contributors
 <hr>
 <table>
   <tr>
