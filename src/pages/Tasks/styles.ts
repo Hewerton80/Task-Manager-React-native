@@ -2,7 +2,7 @@ import styled from 'styled-components/native';
 import { Dimensions, Platform, Animated } from 'react-native';
 import Constants from 'expo-constants';
 import colors from '../../styles/colors';
-import { BaseButton, TouchableOpacity, BorderlessButton } from 'react-native-gesture-handler';
+import { BaseButton, BorderlessButton } from 'react-native-gesture-handler';
 
 //console.log('Constants: ',Constants);
 const statusBarHeigth = Platform.OS === 'android' ? Constants.statusBarHeight : 0;
@@ -109,7 +109,11 @@ export const TasksTabs = styled.View`
     align-items: center;
     padding-left: ${ContainerPadding}px;
 `;
-export const TaskButton = styled(TouchableOpacity)`
+
+interface ITaskProps {
+    selected?: boolean;
+}
+export const TaskButton = styled.TouchableOpacity<ITaskProps>`
     align-items: center;
     justify-content: center;
     flex-direction: row;
@@ -119,27 +123,27 @@ export const TaskButton = styled(TouchableOpacity)`
     border-color: ${colors.lightBlue};
     margin: 20px 0;
     margin-right: 5px;
-    background: ${(props: any) => props.selected? colors.lightBlue: colors.primary };
+    background: ${({ selected }) => selected ? colors.lightBlue : colors.primary};
 `;
-export const TaskButtonContent = styled.Text`
+export const TaskButtonContent = styled.Text<ITaskProps>`
     font-family: 'roboto_300';
     font-size: 18px;
-    color: ${(props: any) => props.selected? colors.primary: colors.lightBlue };
+    color: ${({ selected }) => selected ? colors.primary : colors.lightBlue};
     font-weight: bold;
     margin-right: 4px;
 `;
-export const TaskButtonContentBadg = styled.View`
-    background: ${(props: any) => props.selected? colors.primary: colors.lightBlue };
+export const TaskButtonContentBadg = styled.View<ITaskProps>`
+    background: ${({ selected }) => selected ? colors.primary : colors.lightBlue};
     justify-content: center;
     align-items: center;
     height: 20px;
     width: 20px;
     border-radius: 10px;
 `;
-export const TaskButtonContentBadgContent = styled.Text`
+export const TaskButtonContentBadgContent = styled.Text<ITaskProps>`
     font-family: 'roboto_300';
     font-size: 16px;
-    color: ${(props: any) => props.selected? colors.lightBlue: colors.primary };
+    color: ${({ selected }) => selected ? colors.lightBlue : colors.primary};
     font-weight: bold;
 `;
 

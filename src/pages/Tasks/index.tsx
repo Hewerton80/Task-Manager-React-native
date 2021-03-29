@@ -6,7 +6,7 @@ import useCategory from '../../hooks/useCategory';
 import useTask, { ITask } from '../../hooks/useTask';
 import { getFormatDate } from '../../utils';
 import BackGroundLoad from '../../components/BackGroundLoad';
-import { AntDesign, MaterialIcons, FontAwesome5, Feather  } from '@expo/vector-icons'; 
+import { AntDesign, MaterialIcons, FontAwesome5, Feather } from '@expo/vector-icons';
 import {
   Container,
   HeaderContainer,
@@ -40,7 +40,7 @@ import moment from 'moment';
 import 'moment/locale/pt-br';
 moment.locale('pt-br');
 
-const AnimatedBottomButton = Animated.createAnimatedComponent(BottomButton)
+// const AnimatedBottomButton = Animated.createAnimatedComponent(BottomButton)
 
 interface ITaskInfo extends ITask {
   selected?: boolean;
@@ -59,7 +59,7 @@ const Task: React.FC = () => {
     isLoadingTasks,
     isDoingTask
   } = useTask();
-  const translateAnim = useRef(new Animated.Value(55)).current;  // Initial value for translateY: 55
+  const translateAnim = useRef(new Animated.Value(0)).current;  // Initial value for translateY: 55
 
   const [tasksInfo, setTasksInfo] = useState<ITaskInfo[]>([]);
   const [showTasksInfos, setShowTasksInfos] = useState<boolean[]>([
@@ -207,17 +207,14 @@ const Task: React.FC = () => {
     , [tasksInfo]);
 
   useEffect(() => {
-    if (countTasksDoNotDoneSelected > 0) {
-      Animated.timing(
-        translateAnim, {
-        toValue: 0,
-        duration: 150,
-        // easing: Easing.,
-        useNativeDriver: true
-      }
-      ).start();
-    }
-  }, [translateAnim, countTasksDoNotDoneSelected])
+    Animated.timing(
+      translateAnim, {
+      toValue: countTasksDoNotDoneSelected > 0 ? 0 : 150,
+      duration: 160,
+      // easing: Easing.,
+      useNativeDriver: true
+    }).start();
+  }, [countTasksDoNotDoneSelected])
 
 
   if (!category || isLoadingTasks) {
@@ -240,7 +237,7 @@ const Task: React.FC = () => {
           <HeaderTitle> {countTasksSelected > 0 ? `${countTasksSelected} Selecionada(s)` : ''}  </HeaderTitle>
           <HeaderActions>
             {countTasksSelected === 1 && (
-              <HeaderIConButton 
+              <HeaderIConButton
                 onPress={handleEditTask}
               >
                 <MaterialIcons name="edit" size={24} color={colors.primary} />
@@ -248,7 +245,7 @@ const Task: React.FC = () => {
               </HeaderIConButton>
             )}
             {countTasksSelected > 0 && (
-              <HeaderIConButton 
+              <HeaderIConButton
                 onPress={handleDeleteTasks}
               >
                 <FontAwesome5 name="trash" size={18} color={colors.primary} />
@@ -453,21 +450,20 @@ const Task: React.FC = () => {
           }
         </TasksContainer>
       </Container>
-      {
-        countTasksDoNotDoneSelected > 0 && (
-          <BottomButton
-            onPress={() => !isDoingTask && handleToDoTasks()}
-            style={{
-              transform: [{
-                translateY: translateAnim
-              }]
-            }}
-          >
-            <BottomButtonContent>
-              Marcar como feito <Feather name="check" size={24} color={colors.primary} />
-              </BottomButtonContent>
-          </BottomButton>
-          )}
+      {/* {countTasksDoNotDoneSelected > 0 && ( */}
+      <BottomButton
+        onPress={() => !isDoingTask && handleToDoTasks()}
+        style={{
+          transform: [{
+            translateY: translateAnim,
+          }]
+        }}
+      >
+        <BottomButtonContent>
+          Marcar como feito <Feather name="check" size={24} color={colors.primary} />
+        </BottomButtonContent>
+      </BottomButton>
+      {/* )} */}
     </>
   );
 };
